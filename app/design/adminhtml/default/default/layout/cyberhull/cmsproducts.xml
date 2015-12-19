@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_cms_page_edit>
+        <reference name="cms_page_edit_tabs">
+            <action method="addTab">
+                <name>products_section</name>
+                <parameters helper="cmsproducts/setRelatedProductsParameters" />
+            </action>
+        </reference>
+    </adminhtml_cms_page_edit>
+    <adminhtml_cms_page_productstab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="cmsproducts/adminhtml_cms_edit_tabs_product" name="cms_page_products_grid"/>
+            <block type="adminhtml/widget_grid_serializer" name="cms.page.serializer.products">
+                <action method="initSerializerBlock">
+                    <grid_block_name>cms_page_products_grid</grid_block_name>
+                    <data_callback>getSelectedProducts</data_callback>
+                    <hidden_input_name>product_id</hidden_input_name>
+                    <reload_param_name>products</reload_param_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_cms_page_productstab>
+    <adminhtml_cms_page_productsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="cmsproducts/adminhtml_cms_edit_tabs_product" name="cms_page_products_grid"/>
+        </block>
+    </adminhtml_cms_page_productsgrid>
+</layout>
